@@ -1,0 +1,159 @@
+<html>
+    <head>
+        <style>
+            * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: #e0e5ec;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .calculator {
+      background: #e0e5ec;
+      padding: 30px;
+      border-radius: 30px;
+      box-shadow: 10px 10px 30px #bec4d0,
+                  -10px -10px 30px #ffffff;
+      width: 320px;
+      animation: popIn 0.7s ease;
+    }
+
+    @keyframes popIn {
+      0% {
+        transform: scale(0.7);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .display {
+      height: 60px;
+      background: #e0e5ec;
+      border-radius: 15px;
+      box-shadow: inset 5px 5px 10px #bec4d0,
+                  inset -5px -5px 10px #ffffff;
+      text-align: right;
+      font-size: 28px;
+      padding: 10px 20px;
+      margin-bottom: 25px;
+      overflow-x: auto;
+      color: #333;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    button {
+      padding: 18px;
+      border: none;
+      border-radius: 15px;
+      font-size: 20px;
+      background: #e0e5ec;
+      color: #333;
+      box-shadow: 5px 5px 10px #bec4d0,
+                  -5px -5px 10px #ffffff;
+      transition: 0.2s ease;
+      cursor: pointer;
+    }
+
+    button:active {
+      box-shadow: inset 4px 4px 8px #bec4d0,
+                  inset -4px -4px 8px #ffffff;
+      transform: scale(0.97);
+    }
+
+    .operator {
+      color: #ff6b6b;
+    }
+
+    .equal {
+      grid-column: span 2;
+      background: #48dbfb;
+      color: white;
+      box-shadow: 5px 5px 10px #36b3d0,
+                  -5px -5px 10px #6effff;
+    }
+
+    .equal:active {
+      box-shadow: inset 4px 4px 8px #36b3d0,
+                  inset -4px -4px 8px #6effff;
+    }
+
+    .clear {
+      color: #ff9f43;
+    }
+  </style>
+
+  
+    </head>
+    <body>
+        <div class="calculator" >
+            <div id="display" class="display">0</div>
+            <div class="buttons">
+                <button class="clear" onclick="Displayclear()">C</button>
+                <button onclick="appendValue('(')">(</button>
+                <button onclick="appendValue(')')">)</button>
+                <button class="operator" onclick="appendValue('/')">/</button>
+
+                <button onclick="appendValue('7')">7</button>
+                <button onclick="appendValue('8')">8</button>
+                <button onclick="appendValue('9')">9</button>
+                <button  class="operator" onclick="appendValue('*')">*</button>
+
+                <button onclick="appendValue('4')">4</button>
+                <button onclick="appendValue('5')">5</button>
+                <button onclick="appendValue('6')">6</button>
+                <button class="operator" onclick="appendValue('-')">-</button>
+
+                <button onclick="appendValue('1')">1</button>
+                <button onclick="appendValue('2')">2</button>
+                <button onclick="appendValue('3')">3</button>
+                <button class="operator" onclick="appendValue('+')">+</button>
+
+                <button onclick="appendValue('0')">0</button>
+                <button onlclick="appendValue('.')">.</button>
+                <button class="equal" onclick="calculate()">=</button>
+                        
+
+            </div>
+
+        </div>
+        <script>
+            const display=document.getElementById('display');
+           function appendValue(val){
+            if(display.textContent==="0"||display.textContent==="error")
+           {
+               display.textContent=val;
+           }
+           else{
+            display.textContent+=val;
+           }
+           }
+           function Displayclear(){
+            display.textContent="0";
+           }
+           function calculate(){
+            try{
+               display.textContent=eval(display.textContent);
+            }
+           catch{
+            display.textContent="error";
+           }
+           }
+        </script>
+    </body>
+</html>
